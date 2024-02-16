@@ -72,7 +72,7 @@ protected:
 
     executor_ = std::make_unique<rclcpp::executors::MultiThreadedExecutor>();
 
-    SetUpAndActivateTrajectoryController(true, parameters);
+    SetUfr3ctivateTrajectoryController(true, parameters);
 
     executor_->add_node(traj_controller_->get_node()->get_node_base_interface());
 

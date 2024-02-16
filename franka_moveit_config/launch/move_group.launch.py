@@ -13,7 +13,7 @@
 #  limitations under the License.
 
 # This file is an adapted version of
-# https://github.com/ros-planning/moveit_resources/blob/ca3f7930c630581b5504f3b22c40b4f82ee6369d/panda_moveit_config/launch/demo.launch.py
+# https://github.com/ros-planning/moveit_resources/blob/ca3f7930c630581b5504f3b22c40b4f82ee6369d/fr3_moveit_config/launch/demo.launch.py
 
 import os
 
@@ -62,7 +62,7 @@ def generate_launch_description():
     franka_xacro_file = os.path.join(
         get_package_share_directory('franka_description'),
         'robots',
-        'panda_arm.urdf.xacro',
+        'fr3_arm.urdf.xacro',
     )
     robot_description_config = Command(
         [
@@ -84,7 +84,7 @@ def generate_launch_description():
     franka_semantic_xacro_file = os.path.join(
         get_package_share_directory('franka_moveit_config'),
         'srdf',
-        'panda_arm.srdf.xacro',
+        'fr3_arm.srdf.xacro',
     )
     robot_description_semantic_config = Command(
         [FindExecutable(name='xacro'), ' ', franka_semantic_xacro_file, ' hand:=true']

@@ -89,7 +89,7 @@ TEST_F(FrankaRobotStateTest,
 TEST_F(FrankaRobotStateTest, givenInitializedRobotStateMsg_thenCorrectFrameIDs) {
   franka_state_friend->initialize_robot_state_msg(franka_robot_state_msg);
 
-  ASSERT_EQ(franka_robot_state_msg.o_t_ee.header.frame_id, "panda_link0");
-  ASSERT_EQ(franka_robot_state_msg.ee_t_k.header.frame_id, "panda_link8");
-  ASSERT_EQ(franka_robot_state_msg.measured_joint_state.name[1], "panda_link2");
+  ASSERT_EQ(franka_robot_state_msg.o_t_ee.header.frame_id, "fr3_link0");
+  ASSERT_EQ(franka_robot_state_msg.ee_t_k.header.frame_id, "fr3_link8");
+  ASSERT_EQ(franka_robot_state_msg.measured_joint_state.name[1], "fr3_link2");
 }

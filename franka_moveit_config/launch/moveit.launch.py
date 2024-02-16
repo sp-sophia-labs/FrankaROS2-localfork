@@ -13,7 +13,7 @@
 #  limitations under the License.
 
 # This file is an adapted version of
-# https://github.com/ros-planning/moveit_resources/blob/ca3f7930c630581b5504f3b22c40b4f82ee6369d/panda_moveit_config/launch/demo.launch.py
+# https://github.com/ros-planning/moveit_resources/blob/ca3f7930c630581b5504f3b22c40b4f82ee6369d/fr3_moveit_config/launch/demo.launch.py
 
 import os
 
@@ -57,7 +57,7 @@ def generate_launch_description():
 
     # planning_context
     franka_xacro_file = os.path.join(get_package_share_directory('franka_description'), 'robots',
-                                     'panda_arm.urdf.xacro')
+                                     'fr3_arm.urdf.xacro')
     robot_description_config = Command(
         [FindExecutable(name='xacro'), ' ', franka_xacro_file, ' hand:=true',
          ' robot_ip:=', robot_ip, ' use_fake_hardware:=', use_fake_hardware,
@@ -67,7 +67,7 @@ def generate_launch_description():
 
     franka_semantic_xacro_file = os.path.join(get_package_share_directory('franka_moveit_config'),
                                               'srdf',
-                                              'panda_arm.srdf.xacro')
+                                              'fr3_arm.srdf.xacro')
     robot_description_semantic_config = Command(
         [FindExecutable(name='xacro'), ' ', franka_semantic_xacro_file, ' hand:=true']
     )
@@ -99,7 +99,7 @@ def generate_launch_description():
 
     # Trajectory Execution Functionality
     moveit_simple_controllers_yaml = load_yaml(
-        'franka_moveit_config', 'config/panda_controllers.yaml'
+        'franka_moveit_config', 'config/fr3_controllers.yaml'
     )
     moveit_controllers = {
         'moveit_simple_controller_manager': moveit_simple_controllers_yaml,
@@ -167,7 +167,7 @@ def generate_launch_description():
     ros2_controllers_path = os.path.join(
         get_package_share_directory('franka_moveit_config'),
         'config',
-        'panda_ros_controllers.yaml',
+        'fr3_ros_controllers.yaml',
     )
     ros2_control_node = Node(
         package='controller_manager',
@@ -183,7 +183,7 @@ def generate_launch_description():
 
     # Load controllers
     load_controllers = []
-    for controller in ['panda_arm_controller', 'joint_state_broadcaster']:
+    for controller in ['fr3_arm_controller', 'joint_state_broadcaster']:
         load_controllers += [
             ExecuteProcess(
                 cmd=['ros2 run controller_manager spawner {}'.format(controller)],
@@ -197,7 +197,7 @@ def generate_launch_description():
         executable='joint_state_publisher',
         name='joint_state_publisher',
         parameters=[
-            {'source_list': ['franka/joint_states', 'panda_gripper/joint_states'], 'rate': 30}],
+            {'source_list': ['franka/joint_states', 'fr3_gripper/joint_states'], 'rate': 30}],
     )
 
     franka_robot_state_broadcaster = Node(

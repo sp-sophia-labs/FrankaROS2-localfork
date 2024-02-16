@@ -66,7 +66,7 @@ private:
         const Eigen::Matrix<double, 7, 1>& tau_J_d);
     std::string arm_id_;
 
-    // Interface for Panda model for dynamics and kinematics
+    // Interface for fr3 model for dynamics and kinematics
     std::unique_ptr<franka_semantic_components::FrankaRobotModel> franka_robot_model_;
 
     // Interface for Desired equilibrium pose of the eef

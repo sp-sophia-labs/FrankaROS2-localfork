@@ -315,7 +315,7 @@ TEST_P(TrajectoryControllerTestParameterized, activate)
 TEST_P(TrajectoryControllerTestParameterized, cleanup)
 {
   rclcpp::executors::MultiThreadedExecutor executor;
-  SetUpAndActivateTrajectoryController(executor);
+  SetUfr3ctivateTrajectoryController(executor);
 
   // send msg
   constexpr auto FIRST_POINT_TIME = std::chrono::milliseconds(250);
@@ -456,7 +456,7 @@ TEST_P(TrajectoryControllerTestParameterized, state_topic_consistency)
   // Skip for now, test is unstable
   GTEST_SKIP() << "Skipping position_error_not_normalized test";
   rclcpp::executors::SingleThreadedExecutor executor;
-  SetUpAndActivateTrajectoryController(executor, true, {});
+  SetUfr3ctivateTrajectoryController(executor, true, {});
   subscribeToState();
   updateController();
 
@@ -516,7 +516,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_not_normalized)
   GTEST_SKIP() << "Skipping position_error_not_normalized test";
   rclcpp::executors::MultiThreadedExecutor executor;
   constexpr double k_p = 10.0;
-  SetUpAndActivateTrajectoryController(executor, true, {}, true, k_p, 0.0, false);
+  SetUfr3ctivateTrajectoryController(executor, true, {}, true, k_p, 0.0, false);
   subscribeToState();
 
   size_t n_joints = joint_names_.size();
@@ -616,7 +616,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
   GTEST_SKIP() << "Skipping position_error_normalized test";
   rclcpp::executors::MultiThreadedExecutor executor;
   constexpr double k_p = 10.0;
-  SetUpAndActivateTrajectoryController(executor, true, {}, true, k_p, 0.0, true);
+  SetUfr3ctivateTrajectoryController(executor, true, {}, true, k_p, 0.0, true);
   subscribeToState();
 
   size_t n_joints = joint_names_.size();
@@ -720,7 +720,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 // TEST_P(TrajectoryControllerTestParameterized, test_jumbled_joint_order)
 // {
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(true, {}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {}, &executor);
 //   {
 //     trajectory_msgs::msg::JointTrajectory traj_msg;
 //     const std::vector<std::string> jumbled_joint_names{
@@ -791,7 +791,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //   rclcpp::Parameter partial_joints_parameters("allow_partial_joints_goal", true);
 
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(true, {partial_joints_parameters}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {partial_joints_parameters}, &executor);
 
 //   const double initial_joint1_cmd = joint_pos_[0];
 //   const double initial_joint2_cmd = joint_pos_[1];
@@ -872,7 +872,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //   rclcpp::Parameter partial_joints_parameters("allow_partial_joints_goal", false);
 
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(true, {partial_joints_parameters}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {partial_joints_parameters}, &executor);
 
 //   const double initial_joint1_cmd = joint_pos_[0];
 //   const double initial_joint2_cmd = joint_pos_[1];
@@ -947,7 +947,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //   rclcpp::Parameter allow_integration_parameters(
 //     "allow_integration_in_goal_trajectories", false);
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(
+//   SetUfr3ctivateTrajectoryController(
 //     true, {partial_joints_parameters, allow_integration_parameters}, &executor);
 
 //   trajectory_msgs::msg::JointTrajectory traj_msg, good_traj_msg;
@@ -1010,7 +1010,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 // {
 //   rclcpp::Parameter allow_integration_parameters("allow_integration_in_goal_trajectories", true);
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(true, {allow_integration_parameters}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {allow_integration_parameters}, &executor);
 
 //   trajectory_msgs::msg::JointTrajectory traj_msg, good_traj_msg;
 
@@ -1072,7 +1072,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 // {
 //   rclcpp::executors::SingleThreadedExecutor executor;
 //   rclcpp::Parameter partial_joints_parameters("allow_partial_joints_goal", true);
-//   SetUpAndActivateTrajectoryController(true, {partial_joints_parameters}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {partial_joints_parameters}, &executor);
 
 //   subscribeToState();
 
@@ -1118,7 +1118,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 // TEST_P(TrajectoryControllerTestParameterized, test_ignore_old_trajectory)
 // {
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(true, {}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {}, &executor);
 //   subscribeToState();
 
 //   // TODO(anyone): add expectations for velocities and accelerations
@@ -1149,7 +1149,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 // TEST_P(TrajectoryControllerTestParameterized, test_ignore_partial_old_trajectory)
 // {
 //   rclcpp::executors::SingleThreadedExecutor executor;
-//   SetUpAndActivateTrajectoryController(true, {}, &executor);
+//   SetUfr3ctivateTrajectoryController(true, {}, &executor);
 //   subscribeToState();
 
 //   std::vector<std::vector<double>> points_old{{{2., 3., 4.}, {4., 5., 6.}}};
@@ -1185,7 +1185,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //   // joint_trajectory_controller/include/joint_trajectory_controller/init_joint_trajectory.h#L149
 //   return;
 
-//   // TODO(anyone): use SetUpAndActivateTrajectoryController method instead of the next line
+//   // TODO(anyone): use SetUfr3ctivateTrajectoryController method instead of the next line
 //   rclcpp::executors::SingleThreadedExecutor executor;
 //   executor.add_node(traj_node->get_node_base_interface());
 //   subscribeToState();
@@ -1239,7 +1239,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //   rclcpp::executors::SingleThreadedExecutor executor;
 //   // default if false so it will not be actually set parameter
 //   rclcpp::Parameter is_open_loop_parameters("open_loop_control", false);
-//   SetUpAndActivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
+//   SetUfr3ctivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
 
 //   // goal setup
 //   std::vector<double> first_goal = {3.3, 4.4, 5.5};
@@ -1328,7 +1328,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //   rclcpp::executors::SingleThreadedExecutor executor;
 //   // default if false so it will not be actually set parameter
 //   rclcpp::Parameter is_open_loop_parameters("open_loop_control", true);
-//   SetUpAndActivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
+//   SetUfr3ctivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
 
 //   // goal setup
 //   std::vector<double> first_goal = {3.3, 4.4, 5.5};
@@ -1425,7 +1425,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //     joint_vel_[i] = std::numeric_limits<double>::quiet_NaN();
 //     joint_acc_[i] = std::numeric_limits<double>::quiet_NaN();
 //   }
-//   SetUpAndActivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
+//   SetUfr3ctivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
 
 //   auto current_state_when_offset = traj_controller_->get_current_state_when_offset();
 
@@ -1476,7 +1476,7 @@ TEST_P(TrajectoryControllerTestParameterized, position_error_normalized)
 //     joint_vel_[i] = 0.25 + i;
 //     joint_acc_[i] = 0.02 + i / 10.0;
 //   }
-//   SetUpAndActivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
+//   SetUfr3ctivateTrajectoryController(true, {is_open_loop_parameters}, &executor, true);
 
 //   auto current_state_when_offset = traj_controller_->get_current_state_when_offset();
 

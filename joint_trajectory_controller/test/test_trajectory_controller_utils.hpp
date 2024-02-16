@@ -192,7 +192,7 @@ public:
     }
   }
 
-  void SetUpAndActivateTrajectoryController(
+  void SetUfr3ctivateTrajectoryController(
     rclcpp::Executor & executor, bool use_local_parameters = true,
     const std::vector<rclcpp::Parameter> & parameters = {},
     bool separate_cmd_and_state_values = false, double k_p = 0.0, double ff = 1.0,
